@@ -5,9 +5,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
+    background-image: url('https://images.hdqwalls.com/wallpapers/bthumb/looking-far-away-4k-lb.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Set the body height to 100% of the viewport height */
+    margin: 0; /* Remove default margin to ensure full coverage */
+  }
+  
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+header {
+  background-color: rgb(149, 240, 116);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 50px;
+  border-radius: 0 10% 10% 10%;
+  border-style:outset;
+}
+
+header {
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: #664545;
+  font-size:large;
+}
+
+
+
+
+
+
+

@@ -1,58 +1,46 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 function Booker() {
-  const [authors, setAuthors] = useState([]);
   const [title, setTitle] = useState('');
   const [publisher, setPublisher] = useState('');
+  const [authors, setAuthors] = useState([]);
 
-  useEffect(() => {
-    fetch('http://localhost:9292/books')
-      .then(res => res.json())
-      .then(data => setAuthors(data));
-  }, []);
-
-  function addBook() {
+  const addBook = () => {
+    // Create a new book object based on the entered title and publisher
     const newBook = {
       title: title,
       year_published: publisher
     };
 
-    fetch('http://localhost:9292/books', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newBook)
-    })
-      .then(res => res.json())
-      .then(data => {
-        setAuthors([...authors, data]);
-        setTitle('');
-        setPublisher('');
-      });
-  }
+    // Update the authors state array with the new book
+    setAuthors(prevAuthors => [...prevAuthors, newBook]);
+
+    // Clear the input fields after adding the book
+    setTitle('');
+    setPublisher('');
+  };
 
   return (
     <div>
       <div>
         <input
           type="text"
-          placeholder="Title"
+          placeholder="Book Title"
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
         <input
           type="text"
-          placeholder="Publisher"
+          placeholder="Publisher/Year"
           value={publisher}
           onChange={e => setPublisher(e.target.value)}
         />
         <button onClick={addBook}>Add Book</button>
       </div>
 
-      {authors.map(auth => (
-        <div key={auth.id}>
-          {auth.title} - {auth.year_published}
+      {authors.map((book, index) => (
+        <div key={index}>
+          {book.title} - {book.year_published}
         </div>
       ))}
     </div>
